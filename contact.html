@@ -52,9 +52,7 @@
  
       <section class="form-card"> 
         <h2>Contact Form</h2> 
-          <form id="contact-form"
-           action="mailto:theyallwannnabeher@gmail.com" method="post" 
-           enctype="text/plain" novalidate></form>
+          
            <form id="contact-form" name="contact" method="POST" data-netlify="true" novalidate>
   <input type="hidden" name="form-name" value="contact">
  
@@ -75,7 +73,7 @@
             <input type="email" id="c-email" name="email" required maxlength="100"
                      autocomplete="email" placeholder="you@email.com"> 
           </div> 
-          <div class="form-group"> 
+                    <div class="form-group"> 
             <label for="c-tel">Contact Number</label> 
             <input type="number" id="c-tel" name="tel" placeholder="+27 ..."  maxlength="20"
                      autocomplete="tel" pattern="\+?[0-9 \-]{9,15}"
@@ -103,7 +101,8 @@ placeholder="Message..." required minlength="10" maxlength="500"></textarea>
               </div>
             </div>
  <button type="submit" class="btn btn-success btn-block"><i class="fa fa-paper-plane" aria-hidden="true"></i>Email to SofTee Crochet Co.</button>
-            <p class="form-note">We check your details, give you a preview, and then you press "Send" to send it.</p>
+    <div id = "contact-response" class="contact-respone is hidden" role="status" aria-live ="polite"></div>  *
+ <p class="form-note">We check your details, give you a preview, and then you press "Send" to send it.</p>
           </form>
              <div class="email-preview is-hidden" id="email-preview">
             <h3>Your email is ready</h3>
@@ -119,7 +118,7 @@ placeholder="Message..." required minlength="10" maxlength="500"></textarea>
         <div id="map" class="map-box"></div>
           <div class="map-buttons">
             <button type="button" class="btn btn-secondary" id="locate-me"><i class="fa fa-location-arrow" aria-hidden="true"></i>Show my location</button>
-            <a class="btn btn-secondary" href="https://www.google.com/maps/dir/?api=1&destination=-26.1459,28.0418" target="_blank" rel="noopener noreferrer"><i class="fa fa-map-o" aria-hidden="true"></i>Get directions</a>
+            <a class="btn btn-secondary" href="https://www.google.com/maps/dir/?api=1&destination=-26.2265631,27.8933847" target="_blank" rel="noopener noreferrer"><i class="fa fa-map-o" aria-hidden="true"></i>Get directions</a>
           </div>
           <p class="map-status" id="map-status" aria-live="polite"></p>
           <h3>You can also reach us on:</h3>
@@ -178,11 +177,11 @@ href="mailto:theyallwannnabeher@gmail.com">theyallwannnabeher@gmail.com</a></li>
     <div class="footer-col"> 
       <p class="footer-title">Follow</p>
       <ul class="social-list"> 
-        <li><a class="icon-btn" href="#" aria-label="Facebook"><i class="fa 
+        <li><a class="icon-btn" href="https://www.facebook.com/softee crochet co" aria-label="Facebook"><i class="fa 
 fa-facebook" aria-hidden="true"></i></a></li> 
-        <li><a class="icon-btn" href="#" aria-label="Instagram"><i class="fa 
+        <li><a class="icon-btn" href="https://www.instagram.com/softee_crochet_co?cplk=YWRqa3dxYzM0Z3Vh" aria-label="Instagram"><i class="fa 
 fa-instagram" aria-hidden="true"></i></a></li> 
-        <li><a class="icon-btn" href="#" aria-label="WhatsApp"><i class="fa 
+        <li><a class="icon-btn" href="https://wa.me/27648783678" aria-label="WhatsApp"><i class="fa 
 fa-whatsapp" aria-hidden="true"></i></a></li> 
       </ul> 
     </div> 

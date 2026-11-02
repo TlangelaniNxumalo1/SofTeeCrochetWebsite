@@ -596,11 +596,10 @@ function setUpForm(form) {
 
   // Pressing Send
   form.addEventListener("submit", function (event) {
-    event.preventDefault(); // stop the page reloading
-
-    var firstBadField = checkForm(form);
+   var firstBadField = checkForm(form);
 
     if (firstBadField !== null) {
+      event.preventDefault(); // stop the page reloading
       firstBadField.focus(); // jump to the first mistake
       return; // do not send
     }
