@@ -1,0 +1,1454 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+  color: #8a6f63;
+  background-color: #f8f3ee;
+  line-height: 1.6;
+}
+
+/*
+  NOTE ON IMAGE SIZING: this stylesheet is the ONLY place image
+  dimensions are set — the HTML <img> tags intentionally carry no
+  width/height attributes. Normally those attributes matter for
+  performance (they let the browser reserve space before an image
+  loads, avoiding a layout jump). Here, every <img> already sits
+  inside a class that sets an explicit `aspect-ratio` (see
+  .hero-photo, .split-image img, .product-image img, .map-image
+  below) — since our stylesheet is linked in <head> and loads before
+  the page renders, the browser reserves the correct space from that
+  `aspect-ratio` instead, so nothing is lost by keeping sizing rules
+  in one place.
+*/
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: #b77a86;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #9b5f6d;
+  text-decoration: underline;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+label:focus-visible {
+  outline: 3px solid #e8a33d;
+  outline-offset: 2px;
+}
+
+
+/* ---------------------------------------------------------------------
+   2. TYPOGRAPHY
+   --------------------------------------------------------------------- */
+h1, h2, h3, h4 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+h1 { font-size: 2.4rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.2rem; }
+
+p {
+  margin-bottom: 16px;
+  color: #000000;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b77a86;
+  margin-bottom: 8px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Small utility/modifier classes -----------------------------------
+   These replace one-off inline style="" attributes that used to live in
+   the HTML, so every visual rule stays in this one stylesheet. */
+
+/* Adds space above an element — used above the "find out more on"
+   heading on the Enquiries page. */
+.mt-md {
+  margin-top: 24px;
+}
+
+/* A fixed-height spacer, used at the end of pages (Services, Products,
+   Enquiries, Contact) that don't already end inside a .section — a
+   .section's own padding-bottom would otherwise be missing there. */
+.bottom-space {
+  height: 64px;
+}
+
+/* The map image on the Contact page: same treatment as every other
+   photo-style image on the site (4:3 crop, rounded corners). */
+.map-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+
+/* ---------------------------------------------------------------------
+   3. LAYOUT HELPERS & BUTTONS
+   --------------------------------------------------------------------- */
+.container {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.section {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.section-alt {
+  background-color: #f8f3ee;
+}
+
+.page-header {
+  text-align: center;
+  padding-top: 64px;
+  padding-bottom: 24px;
+}
+
+.page-header p {
+  max-width: 60ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn i {
+  margin-right: 6px;
+}
+
+.btn-primary {
+  background-color: transparent;
+  border-color:#b77a86;
+  color: #b77a86;
+}
+
+.btn-primary:hover {
+  background-color: #b77a86;
+  color: #e7c7cf;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border-color: #b77a86;
+  color: #b77a86;
+}
+
+.btn-secondary:hover {
+  background-color: #b77a86;
+  color: #e7c7cf;
+}
+
+/* A light-outlined button, made specifically for sitting on top of a
+   dark photo (see the hero banner) where a dark-text button would be
+   hard to read. */
+.btn-secondary-light {
+  background-color: transparent;
+  border-color: #b77a86;
+  color: #b77a86;
+}
+
+.btn-secondary-light:hover {
+  background-color: #b77a86;
+  color: #ffffff;
+}
+
+/* Green "Send" buttons, matching the wireframe's form call-to-action */
+.btn-success {
+  background-color: #b77a86;
+  color: #ffffff;
+}
+
+.btn-success:hover {
+  background-color: #2f9066;
+  color: #ffffff;
+}
+
+.btn-block {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+
+/* ---------------------------------------------------------------------
+   4. HEADER & NAVIGATION (CSS-only mobile menu)
+   --------------------------------------------------------------------- */
+.site-header {
+  border-bottom: 1px solid #dfe2ec;
+  position: sticky;
+  top: 0;
+  background-color: #f8f3ee;
+  z-index: 100;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #e7c7cf;
+}
+.logo img {
+  max-height: 50px;
+}
+
+.logo:hover {
+  text-decoration: none;
+  color: #e7c7cf;
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+}
+
+.main-nav a {
+  color: #232530;
+  font-weight: 600;
+  padding: 6px 4px;
+  border-bottom: 2px solid transparent;
+}
+
+.main-nav a:hover,
+.main-nav a:focus,
+.main-nav a[aria-current="page"] {
+  color: #8a6f63;
+  border-bottom-color: #8a6f63;
+  text-decoration: none;
+}
+
+/* The checkbox itself is never visible — it only exists to hold the
+   open/closed STATE. CSS reads that state with ":checked" further
+   down. No JavaScript is involved anywhere in this menu. */
+.nav-toggle-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* The <label> is what the user actually sees and clicks — clicking a
+   <label> toggles the checkbox it's connected to via a matching
+   for="..."/id="..." pair. */
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #dfe2ec;
+  border-radius: 8px;
+  color: #232530;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.nav-toggle .icon-close {
+  display: none;
+}
+
+/* The "~" is the general sibling selector: "any later sibling" — it
+   reaches from the checkbox across to the label and nav next to it. */
+.nav-toggle-input:checked ~ .nav-toggle .icon-open {
+  display: none;
+}
+
+.nav-toggle-input:checked ~ .nav-toggle .icon-close {
+  display: inline-block;
+}
+
+
+/* ---------------------------------------------------------------------
+   5. FOOTER
+   --------------------------------------------------------------------- */
+.site-footer {
+  background-color: #9b5f6d;
+  color: #d7d9e4;
+  padding-top: 40px;
+  padding-bottom: 24px;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.site-footer .logo {
+  color: #e7c7cf;
+}
+
+.site-footer a {
+  color: #e7c7cf;
+}
+
+.site-footer a:hover {
+  color: #fff0f5;
+}
+
+.footer-col h4,
+.footer-title {
+  font-weight: 700;
+  color: #e7c7cf;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.copyright {
+  border-top: 1px solid #b77a86;
+  padding-top: 16px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #e7c7cf;
+}
+
+
+/* ---------------------------------------------------------------------
+   6. HERO BANNER (image + overlaid text, per the wireframe)
+   --------------------------------------------------------------------- */
+.hero-banner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-top: 40px;
+}
+
+.hero-photo {
+  width: 100%;
+  aspect-ratio: 5 / 2;
+  object-fit: cover;
+}
+
+/* A dark gradient sits between the photo and the text so the white
+   heading/paragraph stay readable over any placeholder image. */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(
+    100deg,
+    rgba(35, 37, 48, 0.82) 0%,
+    rgba(35, 37, 48, 0.55) 45%,
+    rgba(35, 37, 48, 0.15) 100%
+  );
+}
+
+.hero-content {
+  color: #ffffff;
+  padding: 40px;
+  max-width: 520px;
+}
+
+.hero-content .eyebrow {
+  color: #d8c0ae;
+}
+
+.hero-content p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
+}
+.category-section {
+  padding: 64px 0;
+  background: #f8f3ee;
+}
+
+.category-heading {
+  max-width: 650px;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+.category-heading h2 {
+  margin: 10px 0;
+  color: #382d2a;
+  font: 38px/1.15 Georgia, serif;
+}
+
+.category-heading p {
+  color: #786c66;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.category-card {
+  overflow: hidden;
+  border: 1px solid #eadbd3;
+  border-radius: 15px;
+  background: #f8f3ee;
+  color: #382d2a;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(85, 55, 43, 0.12);
+}
+
+.category-card img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.category-card-info {
+  padding: 15px 16px 18px;
+}
+
+.category-card-info h3 {
+  margin: 0 0 4px;
+  font: 21px Georgia, serif;
+}
+
+.category-card-info p {
+  margin: 0;
+  color: #786c66;
+  font-size: 14px;
+}
+
+.category-card-info span {
+  display: inline-block;
+  margin-top: 12px;
+  color: #b77a86;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+@media (max-width: 800px) {
+  .category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .category-card img {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-section {
+    padding: 42px 0;
+  }
+
+  .category-grid {
+    gap: 12px;
+  }
+
+  .category-card img {
+    height: 155px;
+  }
+
+  .category-card-info {
+    padding: 12px;
+  }
+
+  .category-card-info h3 {
+    font-size: 18px;
+  }
+
+  .category-heading h2 {
+    font-size: 32px;
+  }
+}
+
+/* --- The "summary" split section reuses the same pattern for the
+   image+text block further down the home page and the About page --- */
+.split {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+}
+
+.split-image,
+.split-text {
+  flex: 1 1 340px;
+}
+
+.split-image img {
+  border-radius: 8px;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.split-image.is-square img {
+  aspect-ratio: 1 / 1;
+}
+
+
+/* ---------------------------------------------------------------------
+   7. GRIDS, CARDS & PRODUCTS
+   --------------------------------------------------------------------- */
+
+/* A general-purpose grid that scales down gracefully (used for the
+   home page's three quick-link cards). */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+/* An explicit 4-column grid, matching the wireframe's Services and
+   Products layout exactly: 1 column on phones, 2 on small tablets, 4
+   on desktop — see the media queries at the bottom of this file. */
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.card {
+  background-color: #e7c7cf;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  padding: 24px;
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.1s ease, transform 0.1s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+}
+
+.card .card-icon {
+  font-size: 1.5rem;
+  color: #b77a86;
+  margin-bottom: 8px;
+}
+
+.card h3 {
+  margin-bottom: 8px;
+}
+
+.card p {
+  margin-bottom: 0;
+  flex: 1;
+}
+
+/* --- Product card: image with an "Add to cart" badge in the corner,
+   matching the wireframe --- */
+.product-card {
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-image {
+  position: relative;
+}
+
+.product-image img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.add-cart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: #ffffff;
+  color: #232530;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid #dfe2ec;
+}
+
+.add-cart:hover {
+  color: #b77a86;
+  border-color: #b77a86;
+  text-decoration: none;
+}
+
+.product-card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #5f6373;
+}
+
+/* --- Stats row (About page) --- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.stat-box {
+  border: 1px solid #f8f3ee;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.stat-box i {
+  font-size: 1.4rem;
+  color: #d8c0ae;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.stat-number {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #dec0ae;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #b77a86;
+}
+
+/* --- Circular icon buttons (social links) --- */
+.social-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #dfe2ec;
+  color: #e7c7cf;
+  font-size: 1rem;
+}
+
+.icon-btn:hover,
+.icon-btn:focus {
+  color: #b77a86;
+  border-color: #b77a86;
+  text-decoration: none;
+}
+
+.site-footer .icon-btn {
+  border-color: #e7c7cf;
+  color: #e7c7cf;
+}
+
+.site-footer .icon-btn:hover {
+  color: #fc8eac;
+  border-color: #fc8eac;
+}
+
+
+/* ---------------------------------------------------------------------
+   8. FORMS, SEARCH BAR & FAQS
+   --------------------------------------------------------------------- */
+.form-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.form-card,
+.info-card {
+  flex: 1 1 340px;
+  border: 1px solid #dfe2ec;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.form-card {
+  background-color: #f5f6fa;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #dfe2ec;
+  border-radius: 8px;
+  font: inherit;
+  color: #232530;
+  background-color: #ffffff;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #8a6f63;
+}
+
+.form-note {
+  font-size: 0.8rem;
+  color: #5f6373;
+  margin-top: 8px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.form-row .form-group {
+  flex: 1 1 160px;
+}
+
+/* --- Pill-shaped search bar (Products page), matching the wireframe --- */
+.search-pill {
+  position: relative;
+  max-width: 420px;
+  margin: 0 auto 40px;
+}
+
+.search-pill i {
+  position: absolute;
+  top: 50%;
+  left: 18px;
+  transform: translateY(-50%);
+  color: #5f6373;
+  pointer-events: none;
+}
+
+.search-pill input {
+  width: 100%;
+  padding: 12px 16px 12px 42px;
+  border: 1px solid #dfe2ec;
+  border-radius: 999px;
+  font: inherit;
+  background-color: #ffffff;
+}
+
+.search-pill input:focus {
+  border-color: #8a6f63;
+}
+
+/* --- FAQ list --- */
+.faq-item {
+  border-bottom: 1px solid #dfe2ec;
+  padding: 16px 0;
+}
+
+.faq-item h3 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.faq-item h3 i {
+  color: #b77a86;
+  margin-right: 6px;
+}
+
+.faq-item p {
+  margin-bottom: 0;
+}
+
+/* --- Icon-prefixed info list (contact details, opening hours) --- */
+.icon-list {
+  list-style: none;
+  margin-bottom: 16px;
+}
+
+.icon-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+  color: #b77a86;
+}
+
+.icon-list i {
+  color: #b77a86;
+  width: 16px;
+  text-align: center;
+  margin-top: 4px;
+  flex: none;
+}
+
+
+/* ---------------------------------------------------------------------
+   9. MEDIA QUERIES (RESPONSIVE DESIGN)
+   --------------------------------------------------------------------- */
+
+/* Small tablets and up: 2 columns for the explicit 4-col grid */
+@media (min-width: 250px) {
+  .grid-4 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media (min-width: 560px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: the full 4 columns, matching the wireframe */
+@media (min-width: 900px) {
+  .grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Small screens: collapse the nav into the CSS-only toggle menu */
+@media (max-width: 700px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .main-nav {
+    display: none;
+    width: 100%;
+  }
+
+  .nav-toggle-input:checked ~ .main-nav {
+    display: block;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 0;
+    padding-bottom: 16px;
+  }
+
+  .main-nav a {
+    display: block;
+    padding: 10px 4px;
+    border-bottom: 1px solid #dfe2ec;
+  }
+
+  .header-inner {
+    flex-wrap: wrap;
+  }
+
+  .hero-photo {
+    aspect-ratio: 4 / 3;
+  }
+
+  .hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(35, 37, 48, 0.35) 0%,
+      rgba(35, 37, 48, 0.88) 100%
+    );
+    align-items: flex-end;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  h1 { font-size: 1.9rem; }
+  h2 { font-size: 1.5rem; }
+}
+
+
+/* =====================================================================
+   PART 3 ADDITIONS  (interactive features, dynamic content, forms)
+   Every rule below is used by js/script.js or by the new HTML.
+   Sections:
+     10. Animations and transitions
+     11. Tabs
+     12. Accordion (FAQ)
+     13. Modal and lightbox (the <dialog> element)
+     14. Gallery
+     15. Products: toolbar, loading and error messages
+     16. Forms: errors, messages, radio buttons
+     17. Map
+     18. Related-links strip
+   ===================================================================== */
+
+
+/* ---------------------------------------------------------------------
+   10. ANIMATIONS AND TRANSITIONS
+   A TRANSITION animates between two states (for example on hover).
+   A KEYFRAME ANIMATION plays a set of steps by itself.
+   --------------------------------------------------------------------- */
+
+/* Keyframes: "fade in while sliding up" */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* The page heading and the hero text play the animation when the page
+   loads. "backwards" means: use the "from" values before it starts. */
+.page-header,
+.hero-content {
+  animation: fadeInUp 0.7s ease backwards;
+}
+
+/* Scroll reveal: script.js adds the class "reveal" to cards and
+   sections, then adds "visible" when they scroll into view. */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover transitions on the product cards and icon buttons */
+.product-card {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+}
+
+.icon-btn {
+  transition: transform 0.2s ease;
+}
+
+.icon-btn:hover {
+  transform: scale(1.12);
+}
+
+/* People who ask their device for less motion get no animation */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+/* ---------------------------------------------------------------------
+   11. TABS (About Us page)
+   --------------------------------------------------------------------- */
+.tab-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+  border-bottom: 2px solid #b77a86;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background-color: transparent;
+  font: inherit;
+  font-weight: 700;
+  color: #b77a86;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.tab-button:hover {
+  color: #d8c0ae;
+}
+
+.tab-button.active {
+  color: #d8c0ae;
+  border-bottom-color: #b77a86;
+}
+
+.tab-panel {
+  padding: 24px 0 0;
+  animation: fadeInUp 0.4s ease backwards;
+}
+
+/* A general "hide this" class. JavaScript adds and removes it. */
+.is-hidden {
+  display: none;
+}
+
+
+/* ---------------------------------------------------------------------
+   12. ACCORDION (FAQ on the Enquiries page)
+   Each question is a <button>. Clicking it adds or removes the class
+   "open" on its .faq-item.
+   --------------------------------------------------------------------- */
+.faq-question {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  color: #000000;
+  cursor: pointer;
+}
+
+.faq-question i {
+  color: #9b5f6d;
+  margin-right: 8px;
+}
+
+.faq-question .faq-arrow {
+  margin-left: auto;
+  margin-right: 0;
+  transition: transform 0.3s ease;
+}
+
+.faq-item.open .faq-arrow {
+  transform: rotate(180deg);
+}
+
+.faq-item .faq-answer {
+  margin-top: 8px;
+}
+
+.faq-item.closed .faq-answer {
+  display: none;
+}
+
+
+/* ---------------------------------------------------------------------
+   13. MODAL AND LIGHTBOX
+   Both use the built-in <dialog> element. JavaScript opens it with
+   showModal(); the browser adds the dark backdrop, traps the keyboard
+   focus inside and closes it when Esc is pressed.
+   --------------------------------------------------------------------- */
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal {
+  width: 90%;
+  max-width: 480px;
+  margin: auto;
+  padding: 32px 24px 24px;
+  border: 0;
+  border-radius: 8px;
+  animation: fadeInUp 0.3s ease backwards;
+}
+
+.modal h2 {
+  font-size: 1.4rem;
+}
+
+.modal-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.close-x {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background-color: #f5f6fa;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.close-x:hover {
+  background-color: #dfe2ec;
+}
+
+.lightbox {
+  width: 92%;
+  max-width: 900px;
+  margin: auto;
+  padding: 16px;
+  border: 0;
+  border-radius: 8px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.lightbox img {
+  display: block;
+  width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.lightbox-caption {
+  margin: 12px 0 0;
+  font-weight: 600;
+  color: #232530;
+}
+
+.lightbox-arrow {
+  position: absolute;
+  top: 40%;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background-color: rgba(35, 37, 48, 0.7);
+  color: #ffffff;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.lightbox-arrow:hover {
+  background-color: #e7c7cf
+}
+
+.lightbox-prev {
+  left: 8px;
+}
+
+.lightbox-next {
+  right: 8px;
+}
+
+
+/* ---------------------------------------------------------------------
+   14. GALLERY (About Us page)
+   --------------------------------------------------------------------- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.gallery-item {
+  display: block;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.gallery-item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+
+/* ---------------------------------------------------------------------
+   15. PRODUCTS: toolbar, count, loading and error messages
+   --------------------------------------------------------------------- */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.toolbar .search-pill {
+  flex: 1 1 260px;
+  margin: 0;
+}
+
+.toolbar select {
+  padding: 12px 16px;
+  border: 1px solid #dfe2ec;
+  border-radius: 999px;
+  font: inherit;
+  background-color: #ffffff;
+}
+
+.result-count {
+  text-align: center;
+}
+
+.loading {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+.load-error {
+  grid-column: 1 / -1;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #fdecea;
+  color: #b3261e;
+}
+
+
+/* ---------------------------------------------------------------------
+   16. FORMS: error messages, result boxes, radio buttons
+   --------------------------------------------------------------------- */
+
+/* The message that JavaScript adds under a wrong field */
+.error-message {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: #b3261e;
+}
+
+/* JavaScript sets aria-invalid="true" on a wrong field, so we can
+   style it with an attribute selector. */
+.form-group [aria-invalid="true"] {
+  border-color: #b3261e;
+}
+
+.form-fieldset {
+  margin: 0 0 16px;
+  padding: 0;
+  border: 0;
+}
+
+.form-fieldset legend {
+  padding: 0;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.choice input {
+  width: auto;
+  margin: 0;
+}
+
+.choice label {
+  margin: 0;
+  font-weight: 400;
+}
+
+.form-error {
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background-color: #fdecea;
+  color: #b3261e;
+}
+
+/* The box that shows the reply to an enquiry */
+.response-box {
+  margin-top: 16px;
+  padding: 16px 20px;
+  border-left: 5px solid #e7c7cf;
+  border-radius: 8px;
+  background-color: #e7c7cf;
+  animation: fadeInUp 0.4s ease backwards;
+}
+
+.response-box h3 {
+  margin-bottom: 8px;
+}
+
+.response-box p {
+  margin-bottom: 8px;
+  color: #232530;
+}
+
+/* The email preview on the Contact page */
+.email-preview {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid #dfe2ec;
+  border-radius: 8px;
+  background-color: #ffffff;
+  animation: fadeInUp 0.4s ease backwards;
+}
+
+.email-preview pre {
+  margin-bottom: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #f5f6fa;
+  white-space: pre-wrap;
+  font: inherit;
+  font-size: 0.9rem;
+}
+
+.btn.is-loading {
+  opacity: 0.8;
+  cursor: progress;
+}
+
+
+/* ---------------------------------------------------------------------
+   17. MAP (Contact page)
+   --------------------------------------------------------------------- */
+.map-box {
+  width: 100%;
+  height: 400px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+
+.map-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.map-status {
+  font-size: 0.9rem;
+}
+
+
+/* ---------------------------------------------------------------------
+   18. RELATED-LINKS STRIP (internal linking)
+   --------------------------------------------------------------------- */
+.related-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 48px;
+  padding: 24px;
+  border-radius: 8px;
+  background-color: #f5f6fa;
+}
+
+.related-links p {
+  margin: 0 12px 0 0;
+  font-weight: 700;
+  color: #232530;
+}
+
+@media (min-width: 700px) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Buttons inside service cards ("Learn more") */
+.card .btn {
+  margin-top: 16px;
+  align-self: flex-start;
+}
+
+/* Looks like an h3 but is an h2, so the heading order stays correct */
+.small-heading {
+  font-size: 1.2rem;
+}
+

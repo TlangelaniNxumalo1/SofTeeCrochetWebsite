@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Replacing YOUR-DOMAIN with the real address of your website-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://softeecrochet.netlify.app/index.html</loc><lastmod>2026-10-28</lastmod><priority>1.0</priority></url>
+  <url><loc>https://softeecrochet.netlify.app/about_us.html</loc><lastmod>2026-10-28</lastmod><priority>0.8</priority></url>
+  <url><loc>https://softeecrochet.netlify.app/services.html</loc><lastmod>2026-10-28</lastmod><priority>0.8</priority></url>
+  <url><loc>https://softeecrochet.netlify.app/products.html</loc><lastmod>2026-10-28</lastmod><priority>0.8</priority></url>
+  <url><loc>https://softeecrochet.netlify.app/enquiry.html</loc><lastmod>2026-10-28</lastmod><priority>0.6</priority></url>
+  <url><loc>https://softeecrochet.netlify.app/contact.html</loc><lastmod>2026-10-28</lastmod><priority>0.6</priority></url>
+</urlset>

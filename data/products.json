@@ -1,0 +1,13 @@
+[
+ { "id": 1, "name": "Crochet Bags",     "category": "Accessories", "size": "all sizes",  "price": 300, "image": "images/pink_crochet_bag.jpg" }, 
+ { "id": 2, "name": "Crochet Hat",     "category": "Clothing",    "size": "S",  "price": 250, "image": "images/headwrap.jpg" },
+ { "id": 3, "name": "Blankets",    "category": "Accessories", "size": "all sizes", "price": 950, "image": "images/blankets.jpg" },
+ { "id": 4, "name": "Beanie",      "category": "Clothing",    "size": "all sizes",  "price": 350, "image": "images/beanie.jpg" },  
+ { "id": 5, "name": "Crochet mini Bag",     "category": "Accessories", "size": "all sizes",  "price": 350, "image": "images/bags.jpg" },
+ { "id": 6, "name": " Chucky Blankets",   "category": "Clothing",    "size": "all sizes", "price": 750, "image": "images/blanket.jpg" },
+ { "id": 7, "name": "Clothing", "category": "Clothing",    "size": "M",  "price": 300, "image": "images/clothing.jpg" },
+ { "id": 8, "name": "Crochet Clothing",   "category": "Clothing",    "size": "S", "price": 250, "image": "images/crochet_clothing.jpg" },
+ { "id": 9, "name": "Flower Crochet",   "category": "Accessories",   "size": "S", "price": 100, "image": "images/flower_crochet.jpg" },
+ { "id": 10, "name": "Flowers",  "category": "Accessories",   "size": "M", "price": 150, "image": "images/flowers.jpg" },
+ { "id": 11, "name": "Plushies",  "category": "Toys",   "size" :"S","price": 100,"image":"images/plushies.jpg" }
+]

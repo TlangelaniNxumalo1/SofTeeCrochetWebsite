@@ -1,0 +1,107 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>Home | SofTee Crochet Co.</title> 
+ <meta name="description" content="Browse our clothing and accessories. Search by name, filter by category and sort by price, then enquire about the product you like.">
+  <meta property="og:title" content="Our Products | SofTee Crochet Co.">
+  <meta property="og:description" content="Browse our clothing and accessories. Search by name, filter by category and sort by price, then enquire about the product you like.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_ZA">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#4d5ea3">
+  <link rel="icon" href="images/studybook-logo-open-book.jpg">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+<link rel="stylesheet" href="css/style.css"> 
+</head> 
+<body> 
+    <header class="site-header"> 
+  <div class="container header-inner"> 
+    <a href="index.html" class="logo"><img src="images/SofTee Crochet co..png" alt="SofTee Crochet Co. Logo"></a> 
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-input"> 
+    <label for="nav-toggle" class="nav-toggle" aria-label="Toggle menu"> 
+      <i class="fa fa-bars icon-open" aria-hidden="true"></i> 
+      <i class="fa fa-times icon-close" aria-hidden="true"></i> 
+    </label> 
+ 
+    <nav class="main-nav" aria-label="Main navigation"> 
+      <ul> 
+        <li><a href="index.html" >Home</a></li> 
+        <li><a href="about_us.html">About Us</a></li> 
+        <li><a href="services.html">Services</a></li> 
+        <li><a href="products.html" aria-current="page">Products</a></li> 
+        <li><a href="enquiry.html">Enquiries</a></li> 
+        <li><a href="contact.html">Contact Us</a></li> 
+      </ul> 
+    </nav> 
+  </div> 
+</header>
+<main> 
+  <div class="container"> 
+    <header class="page-header"> 
+      <h1>Our Products</h1> 
+    </header>  
+    <div class="toolbar">
+    <div class="search-pill"> 
+      <label for="product-search" class="visually-hidden">Search 
+products</label> 
+      <i class="fa fa-search" aria-hidden="true"></i> 
+      <input type="search" id="product-search" name="q" placeholder="Search"> 
+    </div>
+    <label for="product-category">Category:</label>
+<select id="product-category">
+  <option value="all">All categories</option>
+  <option value="Accessories">Accessories</option>
+  <option value="Clothing">Clothing</option>
+  <option value="Toys">Toys</option>
+</select>
+
+
+    <label for="product-sort">Sort by:</label>
+<select id="product-sort">
+  <option value="default">Featured</option>
+  <option value="price-low">Price: low to high</option>
+  <option value="price-high">Price: high to low</option>
+  <option value="size">Size: small to large</option>
+</select> 
+<p id="result-count" aria-live="polite"></p>
+<div class="grid-4" id="product-list"></div>
+     </div>
+  </div>
+  
+     
+</main> 
+    
+
+<footer class="site-footer"> 
+  <div class="container footer-inner"> 
+    <div class="footer-col"> 
+      <p class="logo">SofTee Crochet Co.</p> 
+      <ul class="icon-list"> 
+        <li><i class="fa fa-phone" aria-hidden="true"></i><a 
+href="tel:+27648783678">+27 64 878 3678</a></li> 
+        <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a 
+href="mailto:theyallwannnabeher@gmail.com">theyallwannnabeher@gmail.com</a></li> 
+        <li><i class="fa fa-map-marker" aria-hidden="true"></i><span>Forbes road, Meadowlands Zone 4, Johannesburg</span></li> 
+      </ul> 
+    </div> 
+    <div class="footer-col"> 
+      <h4>Follow</h4> 
+      <ul class="social-list"> 
+        <li><a class="icon-btn" href="#" aria-label="Facebook"><i class="fa 
+fa-facebook" aria-hidden="true"></i></a></li> 
+        <li><a class="icon-btn" href="https://www.instagram.com/softee_crochet_co?cplk=YWRqa3dxYzM0Z3Vh" aria-label="Instagram"><i class="fa 
+fa-instagram" aria-hidden="true"></i></a></li> 
+        <li><a class="icon-btn" href="https://wa.me/27648783678" aria-label="WhatsApp"><i class="fa 
+fa-whatsapp" aria-hidden="true"></i></a></li> 
+      </ul> 
+    </div> 
+  </div> 
+<p class="copyright">&copy; <span id="year">2026</span> SofTee Crochet Co.
+     All rights reserved. Placeholder template.</p>
+</footer>
+</body>
+<script src="js/script.js" defer></script>  
+</html> 
